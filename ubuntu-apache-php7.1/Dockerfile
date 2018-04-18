@@ -3,8 +3,7 @@ FROM ubuntu:xenial
 ENV OS_LOCALE="en_US.UTF-8"
 RUN apt-get update && apt-get install -y locales && locale-gen ${OS_LOCALE}
 ENV LANG=${OS_LOCALE} \
-    LANGUAGE=en_US:en \
-    LC_ALL=${OS_LOCALE}
+    LANGUAGE=en_US:en
 
 ENV APACHE_CONF_DIR=/etc/apache2 \
     PHP_CONF_DIR=/etc/php/7.1 \
@@ -16,7 +15,7 @@ RUN	\
 	&& add-apt-repository -y ppa:ondrej/php \
 	&& add-apt-repository -y ppa:ondrej/apache2 \
 	&& apt-get update \
-    && apt-get install -y curl apache2 libapache2-mod-php7.1 php7.1-cli php7.1-readline php7.1-mbstring php7.1-zip php7.1-intl php7.1-xml php7.1-json php7.1-curl php7.1-mcrypt php7.1-gd php7.1-pgsql php7.1-mysql php7.1-sqlite php-pear \
+    && apt-get install -y curl apache2 libapache2-mod-php7.1 php7.1-common php7.1-cli php7.1-readline php7.1-mbstring php7.1-zip php7.1-intl php7.1-xml php7.1-json php7.1-curl php7.1-mcrypt php7.1-gd php7.1-pgsql php7.1-mysql php7.1-sqlite php-pear \
     # Apache settings
     && cp /dev/null ${APACHE_CONF_DIR}/conf-available/other-vhosts-access-log.conf \
     && rm ${APACHE_CONF_DIR}/sites-enabled/000-default.conf ${APACHE_CONF_DIR}/sites-available/000-default.conf \
