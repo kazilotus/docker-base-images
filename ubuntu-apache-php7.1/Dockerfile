@@ -9,12 +9,34 @@ ENV APACHE_CONF_DIR=/etc/apache2 \
     PHP_CONF_DIR=/etc/php/7.1 \
     PHP_DATA_DIR=/var/lib/php
 
+	# Add php and apache2 to apt repo
 RUN	buildDeps='software-properties-common python-software-properties' \
 	&& apt-get install --no-install-recommends -y $buildDeps \
 	&& add-apt-repository -y ppa:ondrej/php \
 	&& add-apt-repository -y ppa:ondrej/apache2 \
-	&& apt-get update \
-    	&& apt-get install -y curl apache2 libapache2-mod-php7.1 php7.1-common php7.1-cli php7.1-readline php7.1-mbstring php7.1-zip php7.1-intl php7.1-xml php7.1-json php7.1-curl php7.1-mcrypt php7.1-gd php7.1-pgsql php7.1-mysql php-mongodb php7.1-sqlite php-pear
+	&& apt-get update
+	
+    	# Install dependencies
+RUN	apt-get install -y curl
+RUN	apt-get install -y apache2
+RUN	apt-get install -y libapache2-mod-php7.1
+RUN	apt-get install -y php7.1-common
+RUN	apt-get install -y php7.1-cli
+RUN	apt-get install -y php7.1-readline
+RUN	apt-get install -y php7.1-mbstring
+RUN	apt-get install -y php7.1-zip
+RUN	apt-get install -y php7.1-intl
+RUN	apt-get install -y php7.1-xml
+RUN	apt-get install -y php7.1-json
+RUN	apt-get install -y php7.1-curl
+RUN	apt-get install -y php7.1-mcrypt
+RUN	apt-get install -y php7.1-gd
+RUN	apt-get install -y php7.1-pgsql
+RUN	apt-get install -y php7.1-mysql
+RUN	apt-get install -y php7.1-mongodb
+RUN	apt-get install -y php7.1-sqlite
+RUN	apt-get install -y php7.1-xdebug
+RUN	apt-get install -y php-pear
     	
 	# Apache settings
 RUN 	cp /dev/null ${APACHE_CONF_DIR}/conf-available/other-vhosts-access-log.conf \
