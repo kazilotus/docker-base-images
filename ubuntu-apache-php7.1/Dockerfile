@@ -36,6 +36,7 @@ RUN	apt-get install -y php7.1-mysql
 RUN	apt-get install -y php7.1-mongodb
 RUN	apt-get install -y php7.1-sqlite
 RUN	apt-get install -y php7.1-xdebug
+RUN	apt-get install -y php7.1-bcmath
 RUN	apt-get install -y php-pear
     	
 	# Apache settings
